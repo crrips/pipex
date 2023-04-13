@@ -42,6 +42,11 @@ char	*x_path(t_pipex *pipex, char *argv, char **env)
 	char	*path;
 
 	i = 0;
+	if (access(argv, F_OK) == 0)
+	{
+		path = argv;
+		return (path);
+	}
 	pipex->path = find_path(env);
 	pipex->cmd_path = ft_split(pipex->path, ':');
 	while (pipex->cmd_path[i])

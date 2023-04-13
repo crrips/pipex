@@ -23,11 +23,11 @@ void	here_doc(t_pipex *pipex, char *lim, int argc)
 		{
 			write(1, "pipe heredoc> ", 15);
 			str = get_next_line(0);
-			if (!str || *str)
+			if (!str || !*str)
 			{
-				write (1, "\n", 1);
-				unlink("heredoc");
-				exit (0);
+				free(str);
+				write(1, "\n", 1);
+				break ;
 			}
 			if (strncmp(lim, str, ft_strlen(str) - 1) == 0
 				&& strncmp(lim, str, ft_strlen(lim)) == 0)
